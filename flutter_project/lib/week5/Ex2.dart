@@ -26,7 +26,6 @@ class CustomButton extends StatelessWidget {
         return Colors.blueGrey;
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Center(

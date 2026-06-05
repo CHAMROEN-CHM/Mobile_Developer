@@ -89,6 +89,14 @@ void main() {
                 SizedBox(height: 10,),
                 ProductCard(product:Product.firebase, title: Product.firebase.title, location: Product.firebase.image, description: Product.firebase.description),
                 SizedBox(height: 10,),
+
+                CircleAvatar(
+                    radius: 30,
+                    backgroundColor: Colors.blueAccent,
+                    foregroundColor: Colors.white, // Colors the text inside
+                    child: Text('JD', style: TextStyle(fontSize: 20)),
+                  )
+
               ],
             )),
           ),
