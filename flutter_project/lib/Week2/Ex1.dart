@@ -1,76 +1,35 @@
-// Exercise 1
-// list of skills ussing enum
-
-enum Skills { Flutter, Dart, Other }
-
-// Address class
-class Address {
-  final String city;
-  final String street;
-  final String zipCode;
-  // constructors
-  Address(this.city, this.street, this.zipCode);
-}
-
-class Employee {
-  String _name;
-  double _baseSalary;
-  List<Skills> _skill = [];
-  Address _address;
-  int _yearOfExperient;
-
-  // constructors
-  Employee(
-    this._name,
-    this._baseSalary,
-    this._yearOfExperient,
-    this._address,
-    this._skill,
-  );
-
-  // name constructor
-  Employee.mobileDeveloper(String name, int yearOfExperient, Address address)
-    : _name = name,
-      _yearOfExperient = yearOfExperient,
-      _address = address,
-      _skill = [Skills.Dart, Skills.Flutter],
-      _baseSalary = 4000;
-
-  // method getSalary
-  double getSalary() {
-    double salary = _baseSalary;
-    if (_yearOfExperient <= 0) {
-      salary = 4000;
-    } else {
-      salary *= _yearOfExperient;
-    }
-
-    for (var i in skill) {
-      if (i == Skills.Flutter) {
-        salary += 5000;
-      } else if (i == Skills.Dart) {
-        salary += 3000;
-      } else {
-        salary += 1000;
-      }
-    }
-    return salary;
-  }
-
-  // using getter
-  get name => _name;
-  get yearOfExperient => _yearOfExperient;
-  get address => _address;
-  get skill => _skill;
-  get baseSalary => _baseSalary;
-
-  String toString() {
-    return "Name: ${name}\nYear of Experience: ${yearOfExperient}\nBaseSalary: ${getSalary()}\nAddress: ${address}\nSKills: ${skill}";
-  }
-}
+// Ex 1 : Scaffold, Text
+import 'package:flutter/material.dart';
 
 void main() {
-  Address add = Address("PP", "st 32", "1200");
-  Employee emp1 = Employee.mobileDeveloper("Sam", 1, add);
-  print(emp1);
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: Scaffold(
+      backgroundColor: const Color.fromARGB(255, 0, 0, 0),
+      appBar: AppBar(
+        title: Text(
+          "This is my first app.",
+          style: TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+            color: const Color.fromARGB(255, 0, 0, 0),
+          ),
+          ),
+        centerTitle: true,
+        backgroundColor: Color.fromARGB(255, 20, 179, 137)),
+        body: Center(
+
+          child: Text(
+            "Chamroen is the best!!",
+            style: TextStyle(
+              color: const Color.fromARGB(255, 185, 26, 26),
+              fontSize: 30.0,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 2.5,
+            )
+          )
+        ),
+      ),
+    ),
+    );
 }

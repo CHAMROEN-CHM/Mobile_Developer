@@ -1,96 +1,175 @@
-// Exercise 4 : Bonus : Shop Management
-class Address {
-  final String city;
-  final String street;
-  final String country;
-  Address(this.city, this.street, this.country);
-}
-
-// Product class
-class Product {
-  int productQuantity;
-  String productName;
-  double productPrice;
-  Product({
-    required this.productQuantity,
-    required this.productName,
-    required this.productPrice,
-  });
-}
-
-// DeliveryMethod using enum
-enum DeliveryMethod { delivery, pickup }
-
-// Order class
-class Order {
-  List<Product> products = [];
-  DeliveryMethod d_Method;
-  Address? address;
-  Order(this.products, this.address, this.d_Method);
-  double getTotalAmount() {
-    double total = 0;
-    for (var prod in products) {
-      total += (prod.productPrice * prod.productQuantity);
-    }
-    return total;
-  }
-
-  void printOrder() {
-    if (d_Method == DeliveryMethod.pickup) {
-      print("Deliver method: Pickup.");
-    } else {
-      print(
-        "Deliver method : Delivery",
-      );
-    }
-  }
-}
-
-// Customer class
-class Customer {
-  final String name;
-  final String gmail;
-  final String? phoneNum;
-  List<Order> orders = [];
-  Customer({required this.name, required this.gmail, this.phoneNum});
-
-  void addOrders(Order order) {
-    orders.add(order);
-  }
-}
+// Ex: 4 : Create your welcome page
+import 'package:flutter/material.dart';
 
 void main() {
-  // Address object
-  Address add = Address("PP", "st 32", "Cambodia");
-  Product pro1 = Product(
-    productQuantity: 2,
-    productName: "phone",
-    productPrice: 50,
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color.fromARGB(218, 206, 6, 63),
+          centerTitle: true,
+          title: Text(
+            "Welcome to my Hobbies App!",
+            style: TextStyle(
+              color: const Color.fromARGB(255, 1, 1, 1),
+              fontWeight: FontWeight.bold,
+              fontSize: 20.0,
+            ),
+          ),
+        ),
+        body: Container(
+          color: const Color.fromARGB(255, 0, 0, 0),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Container(
+                    width: 300.0,
+                    margin: EdgeInsets.all(10),
+                    height: 70.0,
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 174, 9, 9),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "My hobbies",
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          color: const Color.fromARGB(255, 0, 0, 0),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Container(
+                    width: 250,
+                    height: 100,
+                    margin: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 173, 13, 13),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Football",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: const Color.fromARGB(255, 0, 0, 0),
+                          fontSize: 15.0),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 250,
+                    height: 100,
+                    margin: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 173, 13, 13),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Basketball",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: const Color.fromARGB(255, 0, 0, 0),
+                          fontSize: 15.0),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  Container(
+                    width: 250,
+                    height: 100,
+                    margin: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 173, 13, 13),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Table Tennis",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: const Color.fromARGB(255, 0, 0, 0),
+                          fontSize: 15.0),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    width: 250,
+                    height: 100,
+                    margin: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 173, 13, 13),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Reading",
+                        style: TextStyle(
+                          color: const Color.fromARGB(255, 0, 0, 0),
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.bold,
+                          ),
+                      ),
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+        ),
+        bottomNavigationBar: Container(
+          width: 250.0,
+          height: 100.0,
+          decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 48, 47, 47),
+          ),
+          child: Row(
+            children: [
+              Container(
+                margin: EdgeInsets.all(40),
+                width: 100.0,
+                height: 100.0,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.all(40),
+                width: 100.0,
+                height: 100.0,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.all(40),
+                width: 100.0,
+                height: 100.0,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                ),
+              )
+            ],
+          ),
+        ),
+        
+      ),
+      
+    ),
   );
-  Product pro2 = Product(
-    productQuantity: 1,
-    productName: "Fridge",
-    productPrice: 200,
-  );
-  Product pro3 = Product(
-    productQuantity: 4,
-    productName: "Bottle",
-    productPrice: 10,
-  );
-  Order ord1 = Order([pro1, pro2], add, DeliveryMethod.pickup);
-  Order ord2 = Order([pro3], add, DeliveryMethod.pickup);
-  Customer cus = Customer(name: "sam", gmail: "chameoen@gmail.com");
-  cus.addOrders(ord1);
-  double price = ord1.getTotalAmount();
-  print(
-    "Customer: ${cus}\nAddress: ${add.city},${add.street},${add.country}\nProduct: ${[pro1.productName, pro2.productName]}\nTotal amount: ${price}",
-  );
-  ord1.printOrder();
-
-  cus.addOrders(ord2);
-  price = ord1.getTotalAmount() + ord2.getTotalAmount();
-  print(
-    "Customer: ${cus}\nAddress: ${add.city},${add.street},${add.country}\nProduct: ${[pro1.productName, pro2.productName,pro3.productName]}\nTotal amount: ${price}",
-  );
-  ord2.printOrder();
 }
