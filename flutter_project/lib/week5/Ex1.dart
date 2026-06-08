@@ -9,15 +9,35 @@ class Select extends StatefulWidget {
 }
 
 class _SelectState extends State<Select> {
-  String text = "Not Selected";
-  Color color = Colors.black;
-  Color bgColor = Colors.blue[50]!;
+  bool isSelected = false;
 
-  onTap() {
+  Color get getColor {
+    if (isSelected) {
+      return Colors.blue[500]!;
+    } else {
+      return Colors.blue[50]!;
+    }
+  }
+
+  Color get labelColor {
+    if (isSelected) {
+      return Colors.white;
+    } else {
+      return Colors.black;
+    }
+  }
+
+  String get getLabel {
+    if (isSelected) {
+      return "Selected";
+    } else {
+      return "Not selected";
+    }
+  }
+
+  void onTap() {
     setState(() {
-      text = "Selected";
-      color = Colors.white;
-      bgColor = Colors.blue[500]!;
+      isSelected = !isSelected;
     });
   }
 
@@ -25,8 +45,8 @@ class _SelectState extends State<Select> {
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onTap,
-      style: ElevatedButton.styleFrom(backgroundColor: bgColor),
-      child: Text(text, style: TextStyle(color: color)),
+      style: ElevatedButton.styleFrom(backgroundColor: getColor),
+      child: Text(getLabel, style: TextStyle(color: labelColor)),
     );
   }
 }
@@ -39,20 +59,12 @@ void main() => runApp(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SizedBox(
-               width: 400, height: 100,
-                  child: Select(),
-               ),
-            SizedBox(
-               width: 400, height: 100,
-                  child: Select(),
-               ),
-            SizedBox(
-               width: 400, height: 100,
-                  child: Select(),
-               ),
+            SizedBox(width: 400, height: 100, child: Select()),
+            SizedBox(width: 400, height: 100, child: Select()),
+            SizedBox(width: 400, height: 100, child: Select()),
           ],
         ),
-        ),),
+      ),
+    ),
   ),
 );

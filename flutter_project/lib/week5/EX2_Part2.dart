@@ -10,10 +10,26 @@ class FavoriteCard extends StatefulWidget {
 }
 
 class _FavoriteCardState extends State<FavoriteCard> {
-  Color color = const Color.fromARGB(255, 198, 197, 197);
-  onTap() {
+  bool isSelected = false;
+  Color get getColor {
+    if (isSelected) {
+      return Colors.red;
+    } else {
+      return Color.fromARGB(255, 169, 171, 172);
+    }
+  }
+
+  String get getLabel {
+    if (isSelected) {
+      return "Selected";
+    } else {
+      return "Is not Selected";
+    }
+  }
+
+  void onTap() {
     setState(() {
-      color = Colors.red;
+      isSelected = !isSelected;
     });
   }
 
@@ -46,7 +62,7 @@ class _FavoriteCardState extends State<FavoriteCard> {
           ),
           IconButton(
             onPressed: onTap,
-            icon: Icon(Icons.favorite, color: color),
+            icon: Icon(Icons.favorite, color: getColor),
           ),
         ],
       ),

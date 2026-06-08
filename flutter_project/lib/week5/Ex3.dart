@@ -21,7 +21,7 @@ class _PhotoState extends State<Photo> {
   int count = 0;
   void goNext() {
     setState(() {
-      if (count != 4) {
+      if (count < 4) {
         count++;
       } else {
         count = 0;
@@ -31,8 +31,10 @@ class _PhotoState extends State<Photo> {
 
   void goPrevious() {
     setState(() {
-      if (count != 0) {
+      if (count > 0) {
         count--;
+      } else {
+        count = 4;
       }
     });
   }
