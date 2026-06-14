@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../model/profile_model.dart';
 
-ProfileData ChamroenProfile = ProfileData(
+ProfileData chamroenProfile = ProfileData(
   name: "Chamroen Chhun",
   position: "CyberSecurity",
   avatarUrl: 'assets/aang.png',

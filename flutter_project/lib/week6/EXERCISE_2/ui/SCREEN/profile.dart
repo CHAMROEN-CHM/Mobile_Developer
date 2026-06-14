@@ -24,18 +24,18 @@ class ProfileApp extends StatelessWidget {
             const SizedBox(height: 40),
             CircleAvatar(
               radius: 60,
-              backgroundImage: AssetImage(ChamroenProfile.avatarUrl),
+              backgroundImage: AssetImage(chamroenProfile.avatarUrl),
             ),
             const SizedBox(height: 20),
-            Text(ChamroenProfile.name),
+            Text(chamroenProfile.name),
             const SizedBox(height: 20),
-            Text(ChamroenProfile.position),
+            Text(chamroenProfile.position),
             // toDo
             SizedBox(height: 20),
             Expanded(
               child: ListView(
                 children: [
-                  ...ChamroenProfile.tiles.map(
+                  ...chamroenProfile.tiles.map(
                     (items) => ProfileTile(
                       icon: items.icon,
                       title: items.title,
