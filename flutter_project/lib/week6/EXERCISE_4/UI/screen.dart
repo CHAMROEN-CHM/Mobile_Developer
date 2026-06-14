@@ -44,16 +44,15 @@ class FavoriteCard extends StatefulWidget {
 }
 
 class _FavoriteCardState extends State<FavoriteCard> {
-  int isFav = -1;
+  int favID = -1;
   void onTap(int index) {
     setState(() {
-      isFav = index;
+      favID = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    int index = 0;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -63,12 +62,11 @@ class _FavoriteCardState extends State<FavoriteCard> {
       body: ListView(
         children: [
           ...jokeList.map((items) {
-            int currentIndex = index++;
             return CardBox(
               title: items.title,
               description: items.description,
-              isFavorite: isFav == currentIndex,
-              onTap:() => onTap(currentIndex),
+              isFavorite: favID == items.jokeID,
+              onTap: () => onTap(items.jokeID),
             );
           }),
         ],
