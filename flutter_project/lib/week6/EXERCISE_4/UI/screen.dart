@@ -36,19 +36,27 @@ class CardBox extends StatelessWidget {
   }
 }
 
-class FavoriteCard extends StatefulWidget {
-  const FavoriteCard({super.key});
+class FavoriteCardsList extends StatefulWidget {
+  const FavoriteCardsList({super.key});
 
   @override
-  State<FavoriteCard> createState() => _FavoriteCardState();
+  State<FavoriteCardsList> createState() => _FavoriteCardsListState();
 }
 
-class _FavoriteCardState extends State<FavoriteCard> {
+class _FavoriteCardsListState extends State<FavoriteCardsList> {
   int favID = -1;
-  void onTap(int index) {
+  void onTap(int id) {
     setState(() {
-      favID = index;
+      favID = id;
     });
+  }
+
+  bool isfav(int jokeId) {
+    if (favID == jokeId) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   @override
@@ -65,7 +73,7 @@ class _FavoriteCardState extends State<FavoriteCard> {
             return CardBox(
               title: items.title,
               description: items.description,
-              isFavorite: favID == items.jokeID,
+              isFavorite: isfav(items.jokeID),
               onTap: () => onTap(items.jokeID),
             );
           }),

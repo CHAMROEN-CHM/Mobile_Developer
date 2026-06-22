@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  final VoidCallback onTap;
-  const WelcomeScreen({super.key, required this.onTap});
+  final VoidCallback onNext;
+  const WelcomeScreen({super.key, required this.onNext});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class WelcomeScreen extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           OutlinedButton(
-            onPressed: onTap,
+            onPressed: onNext,
             style: OutlinedButton.styleFrom(
               side: const BorderSide(width: 1.0, color: Colors.white),
             ),
