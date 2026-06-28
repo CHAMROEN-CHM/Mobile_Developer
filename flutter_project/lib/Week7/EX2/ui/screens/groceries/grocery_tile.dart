@@ -8,17 +8,14 @@
 
 // https://api.flutter.dev/flutter/material/ListTile-class.html
 
+
 import 'package:flutter/material.dart';
 import '../../../models/grocery.dart';
 
-class GroceryTiles extends StatelessWidget {
-  final GroceryCategory groceryCategory;
-  final int amount;
-  const GroceryTiles({
-    super.key,
-    required this.groceryCategory,
-    this.amount = 0,
-  });
+class GroceryTile extends StatelessWidget {
+  final GroceryItem groceryItem;
+
+  const GroceryTile({super.key, required this.groceryItem});
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +23,10 @@ class GroceryTiles extends StatelessWidget {
       leading: Container(
         width: 15,
         height: 15,
-        decoration: BoxDecoration(color: groceryCategory.color),
+        decoration: BoxDecoration(color: groceryItem.category.color),
       ),
-      title: Text("groceryCategory.label"),
-      trailing: Text(amount.toString()),
+      title: Text(groceryItem.name),
+      trailing: Text(groceryItem.quantity.toString()),
     );
   }
 }

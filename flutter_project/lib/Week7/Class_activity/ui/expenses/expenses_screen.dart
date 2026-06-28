@@ -108,7 +108,7 @@ class ExpensesScreen extends StatefulWidget {
 
 class _ExpensesScreenState extends State<ExpensesScreen> {
   List<Expense> exp = [...allExpenses];
-  void onAddPressed(BuildContext context) {
+  void onAddPressed() {
     showModalBottomSheet(
       builder: (context) => ExpenseForm(addExpense: addExpenses),
       context: context,
@@ -128,7 +128,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () => onAddPressed(context),
+            onPressed: () => onAddPressed(),
             icon: Icon(Icons.add),
           ),
         ],

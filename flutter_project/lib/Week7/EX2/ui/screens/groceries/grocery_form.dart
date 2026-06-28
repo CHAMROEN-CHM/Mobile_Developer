@@ -13,9 +13,11 @@
 // -	Add item button
 
 import 'package:flutter/material.dart';
+import 'package:flutter_project/Week7/EX2/models/grocery.dart';
 
 class GroceryForm extends StatefulWidget {
-  const GroceryForm({super.key});
+  final void Function(GroceryItem groceryItem) addGrocery;
+  const GroceryForm({super.key, required this.addGrocery});
   @override
   State<GroceryForm> createState() => _GroceryFormState();
 }
@@ -26,9 +28,9 @@ class _GroceryFormState extends State<GroceryForm> {
 
   @override
   void dispose() {
-    super.dispose();
     labelController.dispose();
     quantityController.dispose();
+    super.dispose();
   }
 
   void onReset() {
@@ -36,6 +38,13 @@ class _GroceryFormState extends State<GroceryForm> {
   }
 
   void onAddItem() {
+    final quant = int.tryParse(quantityController.text);
+    GroceryItem groceryItem = GroceryItem(
+      name: labelController.text,
+      quantity: quant!,
+      category: GroceryCategory.meat,
+    );
+    widget.addGrocery(groceryItem);
     Navigator.pop(context);
   }
 
@@ -62,13 +71,13 @@ class _GroceryFormState extends State<GroceryForm> {
               children: [
                 ElevatedButton(
                   onPressed: onReset,
-                  child: Text("Reset", style: TextStyle(color: Colors.blue)),
+                  child: Text("Cancel", style: TextStyle(color: Colors.blue)),
                 ),
                 SizedBox(width: 10),
                 ElevatedButton(
                   onPressed: onAddItem,
                   child: Text(
-                    "Add Items",
+                    "Add Item",
                     style: TextStyle(color: Colors.blue),
                   ),
                 ),
