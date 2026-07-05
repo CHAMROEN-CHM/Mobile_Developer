@@ -13,6 +13,7 @@ class _ExpenseFormState extends State<ExpenseForm> {
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
   String? errorMessage;
+  
   void onCheckPressed() {
     String title = _titleController.text;
     final amount = double.tryParse(_amountController.text);

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../models/expense.dart';
 import '../../repository/expense_repository.dart';
 import 'expenses_tile.dart';
@@ -21,17 +20,18 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
   String? error; // not error if error
   List<Expense>? expenses;
 
+
   void fetchExpense() async {
     try {
-      state = AsyncState.loading; // loading state
+      state = AsyncState.loading;
       setState(() {});
 
-      expenses = await expenseRepository.fetchExpense(); // Start to fetch
+      expenses = await expenseRepository.fetchExpense(); 
       state = AsyncState.success; // Success state
       setState(() {});
     } on ExpenseException catch (e) {
       error = e.message;
-      state = AsyncState.error; // Error state
+      state = AsyncState.error; 
       setState(() {});
     }
   }
