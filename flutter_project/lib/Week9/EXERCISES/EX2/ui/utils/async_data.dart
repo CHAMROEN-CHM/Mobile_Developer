@@ -5,12 +5,6 @@ class AsyncData<T> {
   final T? value;
   final String? error;
 
-  bool isError;
-
-  var data;
-
-  bool isLoading;
-
   AsyncData.success(this.value) : status = AsyncStatus.success, error = null;
   AsyncData.error(this.error) : status = AsyncStatus.error, value = null;
 

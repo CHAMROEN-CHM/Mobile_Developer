@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../data/repository/repository_exception.dart';
-
 import '../../../data/repository/todo_repository.dart';
 import '../../../models/todo.dart';
 import '../../theme/app_screen.dart';
@@ -16,6 +15,8 @@ class TodosScreen extends StatefulWidget {
 
 class _TodosScreenState extends State<TodosScreen> {
   AsyncData<List<Todo>> asyncData = AsyncData.notstarted();
+
+  TodoRepository repository = TodoRepository.global;
 
   @override
   void initState() {
@@ -35,6 +36,22 @@ class _TodosScreenState extends State<TodosScreen> {
 
     // List<Todo> todos = await repository.getTodos();
     // setState(() => asyncData = AsyncData.success(todos),);
+    asyncData = AsyncData.notstarted();
+
+    setState(() {
+      asyncData = AsyncData.loading();
+    });
+
+    try {
+      List<Todo> todos = await repository.getTodos();
+      setState(() {
+        asyncData = AsyncData.success(todos);
+      });
+    } catch (e) {
+      setState(() {
+        asyncData = AsyncData.error(e.toString());
+      });
+    }
   }
 
   void onUpdateCompleted(Todo todo) async {
@@ -46,6 +63,31 @@ class _TodosScreenState extends State<TodosScreen> {
     // Update the widget state (asyncData)
 
     // ! we dont reload the full list, we update directly the modified Todo in the cache (asyncData)
+    List<Todo> currentTodos = asyncData.value!;
+
+    setState(() {
+      asyncData = AsyncData.loading();
+    });
+
+    bool newcompleted = !todo.completed;
+    List<Todo> newTodo = currentTodos.map((td) {
+      if (td.id == todo.id) {
+        return td.copyWith(newcompleted);
+      } else {
+        return td;
+      }
+    }).toList();
+    setState(() {
+      asyncData = AsyncData.success(newTodo);
+    });
+    try {
+      await repository.updateCompleted(todo.id, newcompleted);
+
+    } on RepositoryException catch (e) {
+      setState(() {
+        asyncData = AsyncData.error(e.message);
+      });
+    }
   }
 
   Widget get content => switch (asyncData.status) {

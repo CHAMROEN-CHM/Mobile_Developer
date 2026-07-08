@@ -1,6 +1,4 @@
 enum AsyncState { notstarted, loading, error, success }
-
-
 class AsyncData<T> {
   final AsyncState
   state; 

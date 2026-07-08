@@ -16,12 +16,6 @@ class _MyScreenState extends State<MyScreen> {
 
   AsyncData<ButtonData> data = AsyncData.loading();
 
-  @override
-  void initState() {
-    super.initState();
-    _fetchTodos();
-  }
-
   void _fetchTodos() async {
     setState(() => data = AsyncData.loading());
 
@@ -33,27 +27,28 @@ class _MyScreenState extends State<MyScreen> {
     }
   }
 
+  @override
+  void initState() {
+    super.initState();
+    _fetchTodos();
+  }
 
   @override
   Widget build(BuildContext context) {
     if (data.state == AsyncState.loading) {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     } else {
-      final button = data.value!;
-
       return Center(
-          child: MyButton(
-            data: button,
-            onPressed: () {
-              setState(() {
-                button.isselected = !button.isselected;
-              });
-            },
-          ),
+        child: MyButton(
+          data: data.value!,
+          onPressed: () {
+            setState(() {
+              data.value!.isselected = !data.value!.isselected;
+              repo.updateisSelected(data.value!.isselected);
+            });
+          },
+        ),
       );
     }
   }
-
-
-
 }
