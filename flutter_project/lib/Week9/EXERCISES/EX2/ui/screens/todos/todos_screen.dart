@@ -21,7 +21,6 @@ class _TodosScreenState extends State<TodosScreen> {
   @override
   void initState() {
     super.initState();
-
     // Fetch todos on init state
     _fetchTodos();
   }

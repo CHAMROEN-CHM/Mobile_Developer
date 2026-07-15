@@ -1,7 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+// import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
@@ -40,7 +39,7 @@ void main() async {
   Uri baseUri = Uri.parse("http://localhost:3000");
   Uri loginUri = baseUri.replace(path: "login");
 
-  Map<String, dynamic> body = {"username": "ronan", "password": "thebest"};
+  Map<String, dynamic> body = {"username": "john", "password": "1234"};
 
   Response response = await http.post(
     loginUri,
@@ -89,10 +88,10 @@ void main() async {
 
   print(employeeJson);
 
-  final storage = FlutterSecureStorage();
+  // final storage = FlutterSecureStorage();
 
   // Save token after login
-  await storage.write(key: "auth_token", value: token);
+  // await storage.write(key: "auth_token", value: token);
 
   runApp(MaterialApp(home: App()));
 }
